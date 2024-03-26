@@ -166,5 +166,7 @@ for num_linha, linha in enumerate(programa, start=1):
             print("Número decimal:", token)
         elif re.match(padrao_numero_inteiro, token):
             print("Número inteiro:", token)
+        else:
+            print("Error")
         
 
