@@ -1,7 +1,7 @@
 import re
 
 #abri o aruqivo de leitura
-file = open("read.py")
+file = open("input.txt")
 
 #vetores 
 operadores_python = {
@@ -58,10 +58,10 @@ simbolos_especiais = {
 }
 simbolos_especiais_key = palavras_chave.keys()
 
-comentarios = {
-  '//':'Comentário de linha'
-}
-comentarios_key = comentarios.keys()
+# comentarios = {
+#   '//':'Comentário de linha'
+# }
+# comentarios_key = comentarios.keys()
 
 identificadores = {
     'ID': 'Identificador'
@@ -116,23 +116,23 @@ letras = {
     'z': 'Letra "z"'
 }
 
-numeros = {
-    '0': 'Número zero',
-    '1': 'Número um',
-    '2': 'Número dois',
-    '3': 'Número três',
-    '4': 'Número quatro',
-    '5': 'Número cinco',
-    '6': 'Número seis',
-    '7': 'Número sete',
-    '8': 'Número oito',
-    '9': 'Número nove',
-}
-numeros_key = numeros.keys()
+# numeros = {
+#     '0': 'Número zero',
+#     '1': 'Número um',
+#     '2': 'Número dois',
+#     '3': 'Número três',
+#     '4': 'Número quatro',
+#     '5': 'Número cinco',
+#     '6': 'Número seis',
+#     '7': 'Número sete',
+#     '8': 'Número oito',
+#     '9': 'Número nove',
+# }
+# numeros_key = numeros.keys()
 
 padrao_numero_inteiro = r'\b\d+\b'
 padrao_numero_decimal = r'\b\d+\.\d+\b'
-padrao_comentario = r'//.*'
+padrao_comentario = r'\/\/.*'
 padrao_identificador = r'[a-zA-Z_][a-zA-Z0-9_]*'
 padrao_referencia = r'\([a-zA-Z_][a-zA-Z0-9_]\)'
 
@@ -145,28 +145,45 @@ a = file.read()
 
 programa = a.split("\n")
 contagem = 0
+#cria um array vazio tokens
+tokens = []
 # Itera sobre cada linha do programa
 for num_linha, linha in enumerate(programa, start=1):
     print("Linha #", num_linha, "\n", linha)
-    tokens = linha.split()
-    print("Tokens:", tokens)
+    #baseado nos separadores, vai salvando os lexemas em um array
+    lexema = re.split('( | )',linha)
+    print("Tokens:", lexema)
     print("Propriedades:\n")
-    for token in tokens:
+    for token in lexema:
         if token in operadores_python:
+            tokens.append(tokens)
             print("Operador:", operadores_python[token])
         elif token in palavras_chave:
+            tokens.append(tokens)
             print("Palavra-chave:", palavras_chave[token])
+
         elif token in simbolos_especiais:
+            tokens.append(tokens)
             print("Símbolo especial:", simbolos_especiais[token])
-        elif re.match(padrao_comentario, token):
+
+        elif re.findall(padrao_comentario, token):
+            tokens.append(tokens)
             print("Comentário:", token)
+
         elif re.match(padrao_identificador, token):
+            tokens.append(tokens)
             print("Identificador:", token)
+
         elif re.match(padrao_numero_decimal, token):
+            tokens.append(tokens)
             print("Número decimal:", token)
+
         elif re.match(padrao_numero_inteiro, token):
+            tokens.append(tokens)
             print("Número inteiro:", token)
+
         else:
             print("Error")
+            break
         
 
