@@ -153,6 +153,7 @@ programa = a.split("\n")
 contagem = 0
 #cria um array vazio tokens
 tokens = []
+IDs = []
 # Itera sobre cada linha do programa
 for num_linha, linha in enumerate(programa, start=1):
     print("Linha #", num_linha, "\n", linha)
@@ -171,7 +172,12 @@ for num_linha, linha in enumerate(programa, start=1):
         elif(re.findall(padrao_simbolos_especiais,token)):
             print("Simbolo especial:",token)
         elif(re.findall(padrao_identificador,token)):
-            print("Identificador:",token)
+            if token not in IDs:
+                IDs.append(token)
+                print("Identificador:",token)
+            elif token in IDs:
+                print("ID", IDs.index(token))
+            
         elif(re.findall(padrao_numero_decimal,token)):
             print("Numero decimal", token)
         elif(re.findall(padrao_numero_inteiro,token)):
