@@ -137,7 +137,7 @@ padrao_operadores = r"(\++)|(-)|(=)|(\==)|(/)|(%)|(--)|(<=)|(>=)"
 padrao_simbolos_especiais = r"[\[@&~!#$\*\|{}\]:;<>?,\.']|\(\)|\(|\)|{}|\[\]|\""
 padrao_numero_inteiro = r'\b\d+\b'
 padrao_numero_decimal = r'\b\d+\.\d+\b'
-padrao_comentario = r'\/\/.*$'
+padrao_comentario = r'/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/'
 padrao_identificador = r'[a-zA-Z_][a-zA-Z0-9_]*'
 padrao_referencia = r'\([a-zA-Z_][a-zA-Z0-9_]\)'
 padrao_string = r'(\".*?\"|\'.*?\')'
@@ -154,6 +154,7 @@ contagem = 0
 #cria um array vazio tokens
 tokens = []
 IDs = []
+
 # Itera sobre cada linha do programa
 for num_linha, linha in enumerate(programa, start=1):
     print("Linha #", num_linha, "\n", linha)
@@ -188,4 +189,3 @@ for num_linha, linha in enumerate(programa, start=1):
             print("Error")
             break
         
-
