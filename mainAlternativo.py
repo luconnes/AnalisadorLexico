@@ -159,7 +159,7 @@ IDs = []
 for num_linha, linha in enumerate(programa, start=1):
     print("Linha #", num_linha, "\n", linha)
     #baseado nos separadores, vai salvando os lexemas em um array
-    lexema = re.findall(r'(\b\w+\b|[\(\)\[\]\{\}])',linha)
+    lexema = re.findall(r'(\b\w+\b|[\(\)\[\]\{\}(+)(\++)(-)(=)(\==)(/)(%)(--)(<=)(>=)])',linha)
     
     print("Tokens:", lexema)
     print("Propriedades:\n")
